@@ -15,6 +15,7 @@ public class Author {
     private int id;
     private String name;
     @NonNull
+    @Column(unique = true)
     private String username;
     @NonNull
     private String password;
