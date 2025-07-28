@@ -13,12 +13,18 @@ const Header = () => {
                 <Link to="/" className="text-xl font-bold  rounded-lg py-2 px-6 hover:bg-gray-200 transition-all duration-300">
                     Home
                 </Link>
-                <Link to="/profile" className="text-xl font-bold  rounded-lg py-2 px-6 hover:bg-gray-200 transition-all duration-300">
-                    Profile
-                </Link>
-                {/* <Link to="#" className="text-xl font-bold  rounded-lg py-2 px-6 hover:bg-gray-200 transition-all duration-300">
-                    Logout
-                </Link> */}
+
+                {
+                    localStorage.getItem("login")=="true"
+                    ?
+                    <Link to="/profile" className="text-xl font-bold  rounded-lg py-2 px-6 hover:bg-gray-200 transition-all duration-300">
+                        Profile
+                    </Link>
+                    :
+                    <Link to="/login" className="text-xl font-bold  rounded-lg py-2 px-6 hover:bg-gray-200 transition-all duration-300">
+                        Login
+                    </Link>
+                }
             </div>
         </div>
     </div>

@@ -6,6 +6,7 @@ import Profile from "./pages/Profile";
 import Post from "./pages/Post";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import AccountEdit from "./pages/AccountEdit";
 
 export const BACKEND_URL = import.meta.env.VITE_URL;
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/post/:id" element={<Post />} />
+          <Route path="/edit-account" element={<AccountEdit />} />
         </Routes>
       </div>
       <Footer />

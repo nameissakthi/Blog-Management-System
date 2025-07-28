@@ -1,9 +1,12 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { BACKEND_URL } from '../App'
+import BlogContext from '../context/BlogContext'
 
 const Login = () => {
+
+    const { navigate } = useContext(BlogContext);
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -11,9 +14,13 @@ const Login = () => {
     const onSubmitHandler = async (e) => {
         e.preventDefault();
 
-        const response = await axios.get(BACKEND_URL+"/author/get", { username, password })
+        const response = await axios.get(BACKEND_URL+`/author/get?username=${username}&password=${password}`)
 
-        console.log(response)
+        if(response.status===200 && response.data!=null) {
+            localStorage.setItem("user", JSON.stringify(response.data))
+            localStorage.setItem("login", true)
+            navigate("/")
+        }
     }
 
   return (

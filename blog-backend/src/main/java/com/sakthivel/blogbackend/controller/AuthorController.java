@@ -29,8 +29,8 @@ public class AuthorController {
     }
 
     @GetMapping("/get")
-    public ResponseEntity<Author> getAuthorByAuth(@RequestBody Author authorDetails) {
-        return authorService.getAuthorByAuth(authorDetails);
+    public ResponseEntity<Author> getAuthorByAuth(@RequestParam String username, @RequestParam String password) {
+        return authorService.getAuthorByAuth(new Author(username, password));
     }
 
     @PostMapping("/add")

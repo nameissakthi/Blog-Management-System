@@ -18,7 +18,7 @@ const Home = () => {
 
   useEffect(() => {
     loadPosts();
-  }, [posts]);
+  }, []);
 
   return (
     <div className="flex gap-5">

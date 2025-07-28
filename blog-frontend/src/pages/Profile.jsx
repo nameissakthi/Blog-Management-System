@@ -2,23 +2,37 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FaRegUserCircle } from 'react-icons/fa'
 import { FcLike } from 'react-icons/fc'
-import axios from 'axios'
 import { BACKEND_URL } from '../App'
 import BlogContext from '../context/BlogContext'
+import { IoSettings } from "react-icons/io5";
+import Settings from '../components/Settings'
 
 const Profile = () => {
 
-  const { login, navigate, user } = useContext(BlogContext);
+  const { navigate, user } = useContext(BlogContext);
+  const [settings, setSettings] = useState(false);
 
   useEffect(() => {
-    if(login===false){
+    if(localStorage.getItem("login")==="false"){
       navigate("/login")
     }
   })
 
+  const settingsHandler = () => {
+	if(settings){
+		setSettings(false)
+		return;
+	}
+
+	setSettings(true)
+  }
+
   return (
     <div className='px-10'>
-      <h1 className='text-3xl font-bold'>Profile</h1>
+      <div className='flex justify-between items-center'>
+        <h1 className='text-3xl font-bold'>Profile</h1>
+		<IoSettings className='text-2xl hover:cursor-pointer' onClick={settingsHandler} />
+      </div>
       <div className='flex flex-col my-4'>
         <span className='font-semibold'>Name : <span className='font-normal'>{user.name}</span></span>
         <span className='font-semibold'>Username : <span className='font-normal'>{user.username}</span></span>
@@ -34,10 +48,10 @@ const Profile = () => {
                   <p key={index} className='rounded-lg py-1 px-2 text-white bg-orange-400'>{post.subject}</p>
                 </div>
                 <div className='flex justify-between mt-2'>
-                  <p className='flex items-center gap-1 justify-center font-extralight text-sm'>
+                  {/* <p className='flex items-center gap-1 justify-center font-extralight text-sm'>
                     <FaRegUserCircle />
                     {post.author}
-                  </p>
+                  </p> */}
                   <p className='flex items-center gap-1 justify-center font-extralight text-sm'>
                     <FcLike />
                     {post.likes}
@@ -49,6 +63,12 @@ const Profile = () => {
         })
         }
       </div>
+	  {
+		settings && 
+		<div className='isolate aspect-video bg-white/80 shadow-lg ring-1 ring-black/5 rounded-lg w-[25%] h-[25%] fixed top-[35%] left-[40%] p-4'>
+			<Settings setSettings={setSettings} />
+		</div>
+	  }
     </div>
   )
 }
