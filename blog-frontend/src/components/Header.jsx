@@ -16,9 +16,9 @@ const Header = () => {
                 <Link to="/profile" className="text-xl font-bold  rounded-lg py-2 px-6 hover:bg-gray-200 transition-all duration-300">
                     Profile
                 </Link>
-                <Link to="#" className="text-xl font-bold  rounded-lg py-2 px-6 hover:bg-gray-200 transition-all duration-300">
+                {/* <Link to="#" className="text-xl font-bold  rounded-lg py-2 px-6 hover:bg-gray-200 transition-all duration-300">
                     Logout
-                </Link>
+                </Link> */}
             </div>
         </div>
     </div>

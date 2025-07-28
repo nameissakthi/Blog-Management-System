@@ -1,32 +1,33 @@
 import { useParams } from "react-router-dom";
 import { FcLike } from "react-icons/fc";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { BACKEND_URL } from "../App";
 
 const Post = () => {
   const params = useParams();
   const postId = params.id;
   const [post, setPost] = useState({});
 
-  useState(()=>{
-    const POST = {
-    id: 2,
-    title: "Samplst",
-    subject: "fffafa",
-    content: "ssdgsg",
-    author: "ddsfsdfs",
-    likes: 10,
-  };
+  const loadPost = async () => {
+    const response = await axios.get(BACKEND_URL+`/posts/get/${postId}`)
 
-  setPost(POST);
-  }, [])
+    if(response.status===200){
+      setPost(response.data)
+    }
+  }
+
+  useEffect(() => {
+    loadPost()
+  })
 
   return (
     <div className="px-16">
       <div>
         <h1 className="text-4xl font-semibold mb-1">{post.title}</h1>
         <div>
-			<span>Subject : </span>
-			<span className="text-blue-800">{post.subject}</span>
+			<span>Category : </span>
+			<span className="text-blue-800">{post.category}</span>
 		</div>
       </div>
 	  <div className="my-4 px-4">
@@ -35,7 +36,7 @@ const Post = () => {
 		}
 	  </div>
 	  <div className="flex justify-between items-center">
-		<span className="font-semibold">Author : <span className="text-gray-500 font-normal">{post.author}</span></span>
+		{/* <span className="font-semibold">Author : <span className="text-gray-500 font-normal">{post.author}</span></span> */}
 		<span className="flex items-center gap-1">
 			<FcLike />
 			{post.likes}

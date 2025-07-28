@@ -1,42 +1,25 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FaRegUserCircle } from 'react-icons/fa'
 import { FcLike } from 'react-icons/fc'
+import axios from 'axios'
+import { BACKEND_URL } from '../App'
+import BlogContext from '../context/BlogContext'
 
 const Profile = () => {
 
-  const [user, setUser] = useState({})
+  const { login, navigate, user } = useContext(BlogContext);
 
-  useEffect(()=> {
-    setUser({
-      id : 1,
-      name : "sakthivel",
-      username : "sakthivel",
-      posts : [
-      {
-        id: 1,
-        title: "Sample post",
-        subject: "fsd",
-        content: "ssdgsg",
-        author: "ddsfsdfs",
-        likes: 10
-      },
-      {
-        id: 2,
-        title: "Samplst",
-        subject: "fffafa",
-        content: "ssdgsg",
-        author: "ddsfsdfs",
-        likes: 10
-      }
-      ]
-    })
-  }, [])
+  useEffect(() => {
+    if(login===false){
+      navigate("/login")
+    }
+  })
 
   return (
     <div className='px-10'>
       <h1 className='text-3xl font-bold'>Profile</h1>
-      <div className='flex flex-col mt-4'>
+      <div className='flex flex-col my-4'>
         <span className='font-semibold'>Name : <span className='font-normal'>{user.name}</span></span>
         <span className='font-semibold'>Username : <span className='font-normal'>{user.username}</span></span>
       </div>
