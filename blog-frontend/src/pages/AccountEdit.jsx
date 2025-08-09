@@ -7,7 +7,7 @@ import { BACKEND_URL } from '../App';
 
 const AccountEdit = () => {
 
-    const { user, setUser } = useContext(BlogContext);
+    const { user, loadUser } = useContext(BlogContext);
 
     const [userDetails, setUserDetails] = useState({})
 
@@ -31,19 +31,19 @@ const AccountEdit = () => {
     useEffect(() => {
         console.log(userDetails)
 
+        setUserDetails({ ...userDetails, id : user.id })
+        console.log(userDetails)
         if(confirm) {
-            setUser({...user, userDetails})
 
             const updateAccount = async () => {
-                console.log("hi")
-                const response = await axios.put(BACKEND_URL+"/author/update", { user })
-                console.log(response);
+                const response = await axios.put(BACKEND_URL+"/author/update", userDetails)
+                loadUser(userDetails.username, userDetails.password)
             }
+
+            updateAccount()
         }
         setConfirm(false)
         setOpen(false)
-
-        console.log(user)
     }, [confirm])
 
   return (

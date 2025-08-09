@@ -65,7 +65,7 @@ const Profile = () => {
       </div>
 	  {
 		settings && 
-		<div className='isolate aspect-video bg-white/80 shadow-lg ring-1 ring-black/5 rounded-lg w-[25%] h-[25%] fixed top-[35%] left-[40%] p-4'>
+		<div className='isolate aspect-video bg-white/80 shadow-lg ring-1 ring-black/5 rounded-lg max-w-[15%] min-h-[30%] fixed top-[35%] left-[42.5%] p-4'>
 			<Settings setSettings={setSettings} />
 		</div>
 	  }

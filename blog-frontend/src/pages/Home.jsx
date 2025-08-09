@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaRegUserCircle } from "react-icons/fa";
 import { FcLike } from "react-icons/fc";
+import { FaExclamation } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { BACKEND_URL } from "../App";
 
@@ -22,7 +23,19 @@ const Home = () => {
 
   return (
     <div className="flex gap-5">
-      {posts.map((post, index) => {
+      { posts.length==0
+      ?
+       <div className="border-2 border-black w-full p-6 rounded-lg flex justify-center items-center">
+        <p className="flex flex-col items-center justify-center gap-2">
+          <div className="flex items-center gap-1 text-xl font-semibold">
+            <p>No Post Found</p>
+            <FaExclamation />
+          </div>
+          <p className="text-sm text-gray-600">Please Upload Post By Clicking '+' icon in the Top Right</p>
+        </p>
+       </div>
+      :
+      posts.map((post, index) => {
         return (
           <Link key={index} to={`/post/${post.id}`}>
             <div className="border-2 rounded-lg p-2 min-w-72">

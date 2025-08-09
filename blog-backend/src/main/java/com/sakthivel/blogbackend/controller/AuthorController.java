@@ -34,12 +34,12 @@ public class AuthorController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<String> addAuthor(@RequestBody Author author) {
+    public ResponseEntity<Author> addAuthor(@RequestBody Author author) {
         return authorService.add(author);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<String> updateAuthor(@RequestBody Author author) {
+    public ResponseEntity<Author> updateAuthor(@RequestBody Author author) {
         return authorService.update(author);
     }
 

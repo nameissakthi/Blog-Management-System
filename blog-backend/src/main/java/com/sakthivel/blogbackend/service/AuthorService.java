@@ -30,18 +30,17 @@ public class AuthorService {
         return new ResponseEntity<>(authorRepository.findById(id).orElse(null), HttpStatus.OK);
     }
 
-    public ResponseEntity<String> add(Author author) {
+    public ResponseEntity<Author> add(Author author) {
         if(authorRepository.existsAuthorByUsername(author.getUsername()))
-            return new ResponseEntity<>("Author Already Exists", HttpStatus.NOT_FOUND);
-        authorRepository.save(author);
-        return new ResponseEntity<>("Author Added Successfully", HttpStatus.OK);
+            return new ResponseEntity<>(new Author(), HttpStatus.NOT_FOUND);
+
+        return new ResponseEntity<>(authorRepository.save(author), HttpStatus.OK);
     }
 
-    public ResponseEntity<String> update(Author author) {
+    public ResponseEntity<Author> update(Author author) {
         if(!authorRepository.existsById(author.getId()))
-            return new ResponseEntity<>("Author Details Not Found", HttpStatus.NOT_FOUND);
-        authorRepository.save(author);
-        return new ResponseEntity<>("Author Details Updated", HttpStatus.OK);
+            return new ResponseEntity<>(new Author(), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(authorRepository.save(author), HttpStatus.OK);
     }
 
     public ResponseEntity<String> delete(int id) {

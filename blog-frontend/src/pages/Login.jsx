@@ -6,7 +6,7 @@ import BlogContext from '../context/BlogContext'
 
 const Login = () => {
 
-    const { navigate } = useContext(BlogContext);
+    const { navigate, setLogin, setUser } = useContext(BlogContext);
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -19,6 +19,8 @@ const Login = () => {
         if(response.status===200 && response.data!=null) {
             localStorage.setItem("user", JSON.stringify(response.data))
             localStorage.setItem("login", true)
+            setUser(JSON.parse(localStorage.getItem("user")))
+            setLogin(true)
             navigate("/")
         }
     }
