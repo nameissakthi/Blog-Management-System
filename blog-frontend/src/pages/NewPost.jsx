@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
+import { BACKEND_URL } from "../App";
+import BlogContext from "../context/BlogContext";
 
 const NewPost = () => {
+
+  const { user, loadUser } = useContext(BlogContext)
 
   const [post, setPost] = useState({
     title : "",
     category : "",
     content : ""
   })
+  const [userDetails, setUserDetails] = useState({ ...user, posts : [] })
+  const [confirm, setConfirm] = useState(false)
 
   const onFieldChange = (e, f) => {
     if(f=="title"){
@@ -21,7 +28,25 @@ const NewPost = () => {
   const onFormSubmit = (e) => {
     e.preventDefault()
     console.log(post)
+
+    setUserDetails({ ...user, posts : [...userDetails.posts, post] })
+    setConfirm(true)
   }
+
+  useEffect(() => {
+    if(confirm){
+      (
+        async () => {
+          const response = await axios.put(BACKEND_URL+"/author/update", userDetails)
+
+          console.log(response)
+        }
+      )();
+      loadUser(user.username, user.password)
+    }
+
+    setConfirm(false)
+  }, [userDetails])
 
   return (
     <div className="px-[5%]">

@@ -16,6 +16,8 @@ const Profile = () => {
     if(localStorage.getItem("login")==="false"){
       navigate("/login")
     }
+
+    console.log(user)
   })
 
   const settingsHandler = () => {
@@ -45,7 +47,7 @@ const Profile = () => {
               <div className='border-2 rounded-lg p-2 min-w-72'>
                 <p className='text-2xl font-bold mb-4'>{post.title}</p>
                 <div className='flex'>
-                  <p key={index} className='rounded-lg py-1 px-2 text-white bg-orange-400'>{post.subject}</p>
+                  <p key={index} className='rounded-lg py-1 px-2 text-white bg-orange-400'>{post.category}</p>
                 </div>
                 <div className='flex justify-between mt-2'>
                   {/* <p className='flex items-center gap-1 justify-center font-extralight text-sm'>

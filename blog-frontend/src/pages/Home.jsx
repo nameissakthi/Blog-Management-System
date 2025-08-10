@@ -26,13 +26,13 @@ const Home = () => {
       { posts.length==0
       ?
        <div className="border-2 border-black w-full p-6 rounded-lg flex justify-center items-center">
-        <p className="flex flex-col items-center justify-center gap-2">
+        <div className="flex flex-col items-center justify-center gap-2">
           <div className="flex items-center gap-1 text-xl font-semibold">
             <p>No Post Found</p>
             <FaExclamation />
           </div>
           <p className="text-sm text-gray-600">Please Upload Post By Clicking '+' icon in the Top Right</p>
-        </p>
+        </div>
        </div>
       :
       posts.map((post, index) => {
