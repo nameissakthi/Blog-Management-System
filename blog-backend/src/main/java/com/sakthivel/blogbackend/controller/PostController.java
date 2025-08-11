@@ -31,9 +31,9 @@ public class PostController {
         return postService.getPostById(id);
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<String> createPost(@RequestBody Post post) {
-        return postService.createPost(post);
+    @PostMapping("/add/{authorId}")
+    public ResponseEntity<String> createPost(@RequestBody Post post, @PathVariable int authorId) {
+        return postService.createPost(post, authorId);
     }
 
     @DeleteMapping("/delete/{id}")

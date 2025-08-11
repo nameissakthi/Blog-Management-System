@@ -40,9 +40,9 @@ const NewPost = () => {
           const response = await axios.put(BACKEND_URL+"/author/update", userDetails)
 
           console.log(response)
+          loadUser(user.username, user.password)
         }
       )();
-      loadUser(user.username, user.password)
     }
 
     setConfirm(false)

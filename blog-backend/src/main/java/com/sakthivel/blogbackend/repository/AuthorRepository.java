@@ -16,6 +16,6 @@ public interface AuthorRepository extends JpaRepository<Author, Integer> {
 
     Author findAuthorByUsername(String username);
 
-    @Query("SELECT a.posts FROM Author a WHERE a.username = :username")
-    List<Post> getPostsByAuthorUsername(@Param("username") String username);
+//    @Query("SELECT a.posts FROM Author a WHERE a.username = :username")
+//    List<Post> getPostsByAuthorUsername(@Param("username") String username);
 }

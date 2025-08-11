@@ -19,8 +19,4 @@ public class Author {
     private String username;
     @NonNull
     private String password;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "posts")
-    private List<Post> posts;
 }

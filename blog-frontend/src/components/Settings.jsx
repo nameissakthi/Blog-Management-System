@@ -63,7 +63,6 @@ const Settings = ({setSettings}) => {
 				<div>
 					<p><span className='font-bold'>Name : </span>{user.name}</p>
 					<p><span className='font-bold'>username : </span>{user.username}</p>
-					<p><span className='font-bold'>Number of Posts : </span>{user.posts.length}</p>
 				</div>
 			</div>
 			<div className='flex gap-4'>

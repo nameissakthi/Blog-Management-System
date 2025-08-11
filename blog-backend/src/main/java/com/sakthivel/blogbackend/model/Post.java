@@ -18,4 +18,8 @@ public class Post {
     private String content;
     private String category;
     private int likes;
+
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private Author author;
 }

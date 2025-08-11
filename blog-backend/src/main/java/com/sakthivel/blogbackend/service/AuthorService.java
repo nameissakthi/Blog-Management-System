@@ -50,11 +50,11 @@ public class AuthorService {
         return new ResponseEntity<>("Author Deleted Successfully", HttpStatus.OK);
     }
 
-    public ResponseEntity<List<Post>> getAuthorPosts(String username) {
-        if(!authorRepository.existsAuthorByUsername(username))
-            return new ResponseEntity<>(new ArrayList<>(), HttpStatus.NOT_FOUND);
-        return new ResponseEntity<>(authorRepository.getPostsByAuthorUsername(username), HttpStatus.OK);
-    }
+//    public ResponseEntity<List<Post>> getAuthorPosts(String username) {
+//        if(!authorRepository.existsAuthorByUsername(username))
+//            return new ResponseEntity<>(new ArrayList<>(), HttpStatus.NOT_FOUND);
+//        return new ResponseEntity<>(authorRepository.getPostsByAuthorUsername(username), HttpStatus.OK);
+//    }
 
     public ResponseEntity<Author> getAuthorByAuth(Author authorDetails) {
         if(!authorRepository.existsAuthorByUsername(authorDetails.getUsername()))

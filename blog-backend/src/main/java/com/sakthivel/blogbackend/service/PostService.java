@@ -1,5 +1,6 @@
 package com.sakthivel.blogbackend.service;
 
+import com.sakthivel.blogbackend.model.Author;
 import com.sakthivel.blogbackend.model.Post;
 import com.sakthivel.blogbackend.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +14,17 @@ import java.util.List;
 public class PostService {
 
     PostRepository postRepository;
+    AuthorService authorService;
 
     public PostService() {}
 
     @Autowired
-    public PostService(PostRepository postRepository) {
+    public PostService(
+                PostRepository postRepository,
+                AuthorService authorService
+            ) {
         this.postRepository = postRepository;
+        this.authorService = authorService;
     }
 
     public ResponseEntity<List<Post>> getPosts() {
@@ -46,8 +52,12 @@ public class PostService {
         }
     }
 
-    public ResponseEntity<String> createPost(Post post) {
+    public ResponseEntity<String> createPost(Post post, int authorId) {
         try{
+            Author author = authorService.get(authorId).getBody();
+            if(author == null)
+                return ResponseEntity.badRequest().body("Author Not Found");
+            post.setAuthor(author);
             postRepository.save(post);
             return new ResponseEntity<>("Post Created Successfully", HttpStatus.CREATED);
         } catch (Exception e) {

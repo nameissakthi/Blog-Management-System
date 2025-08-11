@@ -16,7 +16,6 @@ const Profile = () => {
     if(localStorage.getItem("login")==="false"){
       navigate("/login")
     }
-
     console.log(user)
   })
 
